@@ -5,6 +5,8 @@ jobs:
       - image: circleci/android:api-27-alpha
     steps:
       - checkout
+      - restore_cache: #Checksum onto redownloading deps
+                key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: "Clean & Build Project"
           command: ./gradlew clean build
