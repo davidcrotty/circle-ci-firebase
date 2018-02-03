@@ -6,7 +6,9 @@ jobs:
     steps:
       - checkout
       - restore_cache: #Checksum onto redownloading deps
-                key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: "Clean & Build Project"
-          command: ./gradlew clean build
+        name: "Clean & Build Project"
+        command: ./gradlew clean build
+      - save_cache:
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
