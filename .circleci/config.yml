@@ -5,4 +5,4 @@ jobs:
       - image: circleci/android:api-27-alpha
     steps:
       - checkout
-      - run: ruby -v
+      - run: gem install fastlane
