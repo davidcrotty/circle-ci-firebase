@@ -11,5 +11,6 @@ jobs:
           name: "Clean & Build Project"
           command: ./gradlew clean build
       - save_cache:
-          -  path: ~/.gradle # List of directories which should be added to the cache, gradle stores deps here on CI
+          paths:
+            -  ~/.gradle # List of directories which should be added to the cache, gradle stores deps here on CI
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
