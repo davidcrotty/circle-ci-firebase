@@ -13,10 +13,10 @@ jobs:
   build:
     docker:
       - image: circleci/android:api-27-alpha
-      - attach_workspace:
-                at: /test
     steps:
       - checkout
+      - attach_workspace:
+                at: /test
       - run: ls -la /test
       - run: gem install fastlane
       - run: fastlane test
