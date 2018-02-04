@@ -16,8 +16,8 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-                at: /CircleCI
-      - run: ls -la /test
+                at: grape
+      - run: ls -la grape
       - run: gem install fastlane
       - run: fastlane test
   deploy:
