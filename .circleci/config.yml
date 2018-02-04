@@ -1,12 +1,5 @@
 version: 2
 jobs:
-  pullkey:
-    docker:
-      - image: circleci/android:api-27-alpha
-    steps:
-      - run: git clone https://github.com/davidcrotty/grape
-      - run: ls -la
-      - run: cat grape/config.ru
   build:
     docker:
       - image: circleci/android:api-27-alpha
@@ -14,6 +7,13 @@ jobs:
       - checkout
       - run: gem install fastlane
       - run: fastlane test
+  pullkey:
+    docker:
+      - image: circleci/android:api-27-alpha
+    steps:
+      - run: git clone https://github.com/davidcrotty/grape
+      - run: ls -la
+      - run: cat grape/config.ru
   deploy:
      docker:
        - image: circleci/android:api-27-alpha
