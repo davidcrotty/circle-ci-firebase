@@ -5,9 +5,9 @@ jobs:
       - image: circleci/android:api-27-alpha
     steps:
       - run: git clone https://github.com/davidcrotty/grape
-      - run: cat grape/config.ru
+      - run: ls -la
       - persist_to_workspace:
-                root: /grape
+                root: .
                 paths:
                   - config.ru
   build:
