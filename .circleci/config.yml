@@ -7,3 +7,11 @@ jobs:
       - checkout
       - run: gem install fastlane
       - run: fastlane test
+    deploy:
+      - run: echo "Deployed"
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - deploy
