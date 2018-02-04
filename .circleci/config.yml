@@ -25,8 +25,6 @@ workflows:
     jobs:
       - pullkey
       - foo
-        requires:
-          - pullkey
       - hold:
           type: approval
           requires:
