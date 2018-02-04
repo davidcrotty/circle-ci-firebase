@@ -1,5 +1,12 @@
 version: 2
 jobs:
+  pullkey:
+    docker:
+      - image: circleci/android:api-27-alpha
+    steps:
+      - run: git clone https://github.com/davidcrotty/grape
+      - run: cd grape
+      - run: cat config.ru
   build:
     docker:
       - image: circleci/android:api-27-alpha
@@ -16,6 +23,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
+      - pullkey
       - build
       - hold:
           type: approval
