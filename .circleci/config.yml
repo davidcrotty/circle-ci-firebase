@@ -1,17 +1,23 @@
 version: 2
 jobs:
-  pullkey:
+  pullsecrets:
     docker:
       - image: circleci/android:api-27-alpha
     steps:
       - run: git clone https://github.com/davidcrotty/grape
-      - run: ls -la
       - run: cat grape/config.ru
+      - persist_to_workspace:
+                root: /grape
+                paths:
+                  - config.ru
   build:
     docker:
       - image: circleci/android:api-27-alpha
+      - attach_workspace:
+                at: /test
     steps:
       - checkout
+      - run: ls -la /test
       - run: gem install fastlane
       - run: fastlane test
   deploy:
@@ -23,10 +29,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - pullkey
+      - pullsecrets
       - build:
           requires:
-            - pullkey
+            - pullsecrets
       - hold:
           type: approval
           requires:
